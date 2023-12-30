@@ -1,3 +1,7 @@
+body {
+    transition: background-image 0.5s ease-in-out;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -232,4 +236,25 @@
 .dark-mode .outstanding .item-img,
 .dark-mode .outstanding{
     box-shadow: var(--box-shadow-dark-mode);
+}
+/* Thêm điều chỉnh dưới đây */
+
+@media screen and (max-width: 768px) {
+    .main {
+        max-width: 100%; /* Trang sẽ đầy 100% chiều ngang trên màn hình nhỏ hơn 768px */
+    }
+
+    .avatar-img {
+        width: 80px; /* Giảm kích thước ảnh đại diện trên màn hình nhỏ hơn 768px */
+    }
+
+    .contact .ico {
+        width: 60px; /* Giảm kích thước biểu tượng trên màn hình nhỏ hơn 768px */
+        height: 60px;
+    }
+
+    .item {
+        width: 100%; /* Để full width trên màn hình nhỏ hơn 768px */
+        max-width: none; /* Hủy giới hạn kích thước tối đa */
+    }
 }

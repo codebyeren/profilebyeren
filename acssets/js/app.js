@@ -1,40 +1,42 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-
 var btnSwitchMode = $('.switch-mode');
 var checkDarkMode = false;
-var body = $('body')
-
-
+var body = document.body;
 
 const app = {
     getLocalStorage: function(){
         var darkChecked = JSON.parse(localStorage.getItem('checked'));
-        if(!darkChecked){
-            body.classList.remove('dark-mode')
-            btnSwitchMode.setAttribute('title','switch to dark mode')
-            checkDarkMode  = false
+        if (darkChecked) {
+            this.enableDarkMode();
         }
-        else{
-            body.classList.add('dark-mode');
-            btnSwitchMode.setAttribute('title','switch to light mode')
-            checkDarkMode = true
-        }
+    },
+    enableDarkMode: function() {
+        body.classList.add('dark-mode');
+        btnSwitchMode.setAttribute('title', 'Switch to Light Mode');
+        checkDarkMode = true;
+        // Thay đổi ảnh nền khi ở chế độ tối
+        body.style.backgroundImage = 'url("./acssets/photo/dark-background.jpg")';
+        body.style.transition = 'background-image 0.5s ease-in-out';
+    },
+    disableDarkMode: function() {
+        body.classList.remove('dark-mode');
+        btnSwitchMode.setAttribute('title', 'Switch to Dark Mode');
+        checkDarkMode = false;
+        // Thay đổi ảnh nền khi ở chế độ thường
+        body.style.backgroundImage = 'url("./acssets/photo/light-background.jpg")';
+        body.style.transition = 'background-image 0.5s ease-in-out';
     },
     handleEvents: function(){
         btnSwitchMode.onclick = () =>{
             if(checkDarkMode){
-                body.classList.remove('dark-mode')
-                btnSwitchMode.setAttribute('title','switch to dark mode')
+                this.disableDarkMode();
                 localStorage.setItem('checked', false);
-                checkDarkMode  = false
             }
             else{
-                body.classList.add('dark-mode');
-                btnSwitchMode.setAttribute('title','switch to light mode')
+                this.enableDarkMode();
                 localStorage.setItem('checked', true);
-                checkDarkMode = true
             }
         }
     },
@@ -43,8 +45,5 @@ const app = {
         this.handleEvents();
     }
 }
+
 app.start();
-
-
-
-
