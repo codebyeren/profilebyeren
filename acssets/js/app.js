@@ -16,16 +16,16 @@ const app = {
         body.classList.add('dark-mode');
         btnSwitchMode.setAttribute('title', 'Switch to Light Mode');
         checkDarkMode = true;
-        // Thay đổi ảnh nền khi ở chế độ tối
         body.style.backgroundImage = 'url("./acssets/photo/dark-background.jpg")';
+        body.style.backgroundSize = 'cover';
         body.style.transition = 'background-image 0.5s ease-in-out';
     },
     disableDarkMode: function() {
         body.classList.remove('dark-mode');
         btnSwitchMode.setAttribute('title', 'Switch to Dark Mode');
         checkDarkMode = false;
-        // Thay đổi ảnh nền khi ở chế độ thường
         body.style.backgroundImage = 'url("./acssets/photo/light-background.jpg")';
+        body.style.backgroundSize = 'cover';
         body.style.transition = 'background-image 0.5s ease-in-out';
     },
     handleEvents: function(){
